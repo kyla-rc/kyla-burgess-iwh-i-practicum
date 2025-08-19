@@ -6,8 +6,27 @@ body, * {
     padding: 0;
 }
 
-h1 {
+body {
     margin: 1rem;
+}
+
+tr {
+    border: 1px solid black;
+}
+
+td, th {
+    padding: 0.2rem;
+    border: 1px solid black;
+}
+
+table {
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+thead {
+    background-color: #C1A7E8;
 }
 
 .cards {
