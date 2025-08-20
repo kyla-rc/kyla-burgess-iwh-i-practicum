@@ -6,9 +6,33 @@ html
         link(rel="stylesheet", href="/css/style.css")
     body
         a(href="/") Return to the homepage    
-        h1 Contacts
-        .cards 
-            each contact in data
-                .card 
-                    h2.card__name #{contact.properties.firstname}  #{contact.properties.lastname}
-                    p.card__email #{contact.properties.email}
+        h1 
+            if existingPet === null
+                | Add a New Pet
+            else
+                | Update Pet
+
+        form(action=existingPet ? `/update-cobj?pet=${existingPet.id}` : '/update-cobj' method="POST")
+            div
+                label(for="name") Name:
+                input(type="text" name="name" id="name" value=existingPet ? existingPet.properties.name : "" required)
+
+            div
+                label(for="animal") Animal:
+                select(name="animal" id="animal")
+                    each b in ["Dog", "Cat", "Bird", "Rodent"]
+                        if existingPet && b === existingPet.properties.pet_type
+                            option(value=b selected)= b
+                        else
+                            option(value=b)= b
+
+            div
+                label(for="date_of_birth") Date of Birth:
+                input(type="date" name="dob" id="dob" value=existingPet ? existingPet.properties.date_of_birth : "" required)
+
+            div
+                button(type="submit")
+                    if existingPet === null
+                        | Add Pet +
+                    else
+                        | Update Pet

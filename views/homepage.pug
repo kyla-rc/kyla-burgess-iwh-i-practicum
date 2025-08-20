@@ -6,7 +6,7 @@ html
         link(rel="stylesheet", href="/css/style.css")
     body    
         h1 Pets Table
-        a(href="/update-cobj") Add/Update this table
+        a(href="/update-cobj") Add new pet +
         table
             thead
                 tr
@@ -14,8 +14,11 @@ html
                 th Animal
                 th D.O.B.
             tbody
-                each pet in data
+                each pet in petData
                     tr
-                        td #{pet.properties.name}
+                        td.nameField
+                            | #{pet.properties.name}
+                            a(href=`/update-cobj?pet=${pet.id}`)
+                                img(src="/images/edit.png" alt=`Edit ${pet.properties.name}`)
                         td #{pet.properties.pet_type}
                         td #{pet.properties.date_of_birth}
